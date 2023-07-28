@@ -64,8 +64,8 @@ int main() {
         } else if (user_input == 'x') {
             // Exit app
             std::cout << "Exiting app..." << std::endl;
-            db.clearTasks();
-            db.writeToDatabase(abby.getTaskList());
+            // db.clearTasks();
+            // db.writeToDatabase(abby.getTaskList());
             break;
         } else {
             std::cout << "Invalid input. Please try again." << std::endl;
