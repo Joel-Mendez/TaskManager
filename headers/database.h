@@ -12,9 +12,7 @@ class Database{
     public:
         Database(std::string name); // Constructor
         ~Database(); //
-        // void saveDatabase(Planner planner)
         void addTask(Task task); // Add task to database
-        void clearTasks();
         void writeToDatabase(std::vector<Task> taskList);
         std::vector<Task> getAllTasks();
 
