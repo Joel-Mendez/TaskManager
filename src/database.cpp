@@ -31,30 +31,30 @@ Database::~Database() {
     }
 }
 
-// Task Related Functions 
-// void Database::addTask(Task task){
-//     std::string query = "INSERT INTO todo (name) VALUES (?)"; // Initializing query //Change to include more attributes
-//     sqlite3_stmt* stmt; // Statement pointer
+//Task Related Functions 
+void Database::addTask(Task task){
+    std::string query = "INSERT INTO todo (name) VALUES (?)"; // Initializing query //Change to include more attributes
+    sqlite3_stmt* stmt; // Statement pointer
 
-//     int rc = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr);
-//     if (rc != SQLITE_OK) {
-//         std::cerr << "Error preparing SQL statement: " << sqlite3_errmsg(db) << std::endl;
-//         return;
-//     }
+    int rc = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error preparing SQL statement: " << sqlite3_errmsg(db) << std::endl;
+        return;
+    }
 
-//     // Bind parameters (id and name) to the statement ///Change to include more attributes
-//     // sqlite3_bind_int(stmt, 1, task.getID());
-//     sqlite3_bind_text(stmt, 1, task.getName().c_str(), -1, SQLITE_STATIC);
+    // Bind parameters (id and name) to the statement ///Change to include more attributes
+    // sqlite3_bind_int(stmt, 1, task.getID());
+    sqlite3_bind_text(stmt, 1, task.getName().c_str(), -1, SQLITE_STATIC);
 
-//     // Execute the statement
-//     rc = sqlite3_step(stmt);
-//     if (rc != SQLITE_DONE) {
-//         std::cerr << "Error executing SQL statement: " << sqlite3_errmsg(db) << std::endl;
-//     }
+    // Execute the statement
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        std::cerr << "Error executing SQL statement: " << sqlite3_errmsg(db) << std::endl;
+    }
 
-//     // Finalize the statement
-//     sqlite3_finalize(stmt);
-// }
+    // Finalize the statement
+    sqlite3_finalize(stmt);
+}
 
 void Database::writeToDatabase(std::vector<Task> taskList){
     for(Task task : taskList){
@@ -108,22 +108,4 @@ std::vector<Task> Database::getAllTasks() {
     return tasks;
 }
 
-void Database::clearTasks() {
-    std::string query = "DELETE FROM todo"; // SQL query to delete all rows from the table
-
-    char* errorMessage;
-    int rc = sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errorMessage);
-    if (rc != SQLITE_OK) {
-        std::cerr << "Error deleting records from the database: " << errorMessage << std::endl;
-        sqlite3_free(errorMessage);
-    }
-}
-
-// void Database::delTask(int id){
-
-// }
-
-// std::vector Database::getTasks(){
-
-// }
 
