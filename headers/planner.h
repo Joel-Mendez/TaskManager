@@ -14,7 +14,6 @@ class Planner {
         void delTask(int ID);
         std::vector<Task> getTaskList(); 
         // void editTask()
-        // void setName(std::string name); // To edit task name
 
     private:
         std::vector<Task> taskList; //Task Name
